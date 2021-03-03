@@ -22,7 +22,7 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
-        let drought = 0;
+        var drought = 0;
         
         let trueRNG = document.getElementById('trueRNG');
         let fixLevel = document.getElementById('fixlevel');
