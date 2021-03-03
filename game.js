@@ -21,7 +21,9 @@ class Game {
         this.lines = 0;
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
-
+        
+        const trueRNG = document.getElementById('trueRNG');
+        
         this.fakeGame = fakeGame;
         this.practice = practice;
         if (this.practice) {
@@ -173,8 +175,11 @@ class Game {
                 }
 
                 if (incLevel) {
-                    this.level++;
-                    this.setSpeed();
+                    if (!fixLevel){
+                        this.level++;
+                        this.setSpeed();
+                    }
+                    
                 }
                 this.score += this.scoreWeights[this.animatingLines.length] * (this.level + 1);
                 if (this.animatingLines.length == 3)
@@ -312,7 +317,13 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                this.bag.push(i); //Refill the bag with each piece
+                if (trueRNG) {
+                    this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
+                } else {
+                    this.bag.push(i); //Refill the bag with each piece
+                
+                }
+               
             }
         }
         this.currentPiece = this.nextPiece; //Assign the new current piece
@@ -323,9 +334,10 @@ class Game {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
             if (this.nextPieceIndex == 0) {
-                //If it randomly chose to spawn 1 triangle, spawn 2 more
-                this.nextSingles = 2;
+                     //If it randomly chose to spawn 1 triangle, spawn 2 more
+                    this.nextSingles = 2;
             }
+            
         }
 
         this.currentSnapshot.setNext(this.nextPieceIndex);
