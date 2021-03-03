@@ -332,6 +332,8 @@ class Game {
                         break;    
                     case "trueRNG":
                         this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
+                    default:
+                        this.bag.push(i);
                 
                 }
                
@@ -345,6 +347,7 @@ class Game {
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
+            
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
