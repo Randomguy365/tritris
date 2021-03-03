@@ -22,7 +22,7 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
-        var drought = 0;
+        this.drought = 0;
         
         let trueRNG = document.getElementById('trueRNG');
         let fixLevel = document.getElementById('fixlevel');
@@ -333,11 +333,11 @@ class Game {
         if (this.nextSingles > 0) {
             this.nextPieceIndex = 0; //This will make it spawn 3 single triangles in a row
             this.nextSingles--;
-            drought = 0;
+            this.drought = 0;
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
-            drought++;
+            this.drought++;
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
@@ -646,7 +646,8 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            const totalDrought = nf(drought,2);
+            const Drought = this.drought;
+            const totalDrought = nf(Drought,2);
 
             const textW = max(
                 textWidth(tritrisPercentText),
