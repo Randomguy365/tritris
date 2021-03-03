@@ -22,6 +22,8 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
+        let drought = 0;
+        
         let trueRNG = document.getElementById('trueRNG');
         let fixLevel = document.getElementById('fixlevel');
         
@@ -331,12 +333,14 @@ class Game {
         if (this.nextSingles > 0) {
             this.nextPieceIndex = 0; //This will make it spawn 3 single triangles in a row
             this.nextSingles--;
+            drought = 0;
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
+            drought++;
             if (this.nextPieceIndex == 0) {
-                     //If it randomly chose to spawn 1 triangle, spawn 2 more
-                    this.nextSingles = 2;
+                //If it randomly chose to spawn 1 triangle, spawn 2 more
+                this.nextSingles = 2;
             }
             
         }
@@ -629,6 +633,7 @@ class Game {
         }
 
         if (showStats && !this.practice) {
+            
             const statPos = createVector(
                 scorePos.x,
                 nextPiecePos.y + nextPieceDim.y + cellH
@@ -641,10 +646,12 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
+            const totalDrought = nf(drought,2);
 
             const textW = max(
                 textWidth(tritrisPercentText),
                 textWidth(startLevelText),
+                textWidth(totalDrought),
                 4 * cellW
             );
 
@@ -660,12 +667,19 @@ class Game {
             noStroke();
             fill(0);
             if (!this.fakeGame) {
+               
                 text(tritrisPercentText, statPos.x + padding, statPos.y + padding);
                 text(
                     startLevelText,
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
-                );
+                ); 
+                if(!trueRNG.checked){
+                    if (drought > 0) {
+                         text(totalDrought, statPos.x + padding, statPos.y + padding + 2.75* txtSize + cellH);
+                    }
+                
+                }
             }
         }
 
