@@ -22,9 +22,9 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
-        this.drought = 0;
+        this.drought = -1;
         
-        let trueRNG = document.getElementById('trueRNG');
+        let gamemode = document.getElementById('gamemode').value;
         let fixLevel = document.getElementById('fixlevel');
         
         this.fakeGame = fakeGame;
@@ -320,10 +320,18 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                if (trueRNG.checked) {
-                    this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
-                } else {
-                    this.bag.push(i); //Refill the bag with each piece
+                switch (gamemode) {
+                    case "7bag":
+                        this.bag.push(i);
+                        break;
+                    case "28bag":
+                        this.bag.push(i); // 28 pieces
+                        this.bag.push(i);
+                        this.bag.push(i);
+                        this.bag.push(i);
+                        break;    
+                    case "trueRNG":
+                        this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
                 
                 }
                
@@ -333,11 +341,10 @@ class Game {
         if (this.nextSingles > 0) {
             this.nextPieceIndex = 0; //This will make it spawn 3 single triangles in a row
             this.nextSingles--;
-            this.drought = 0;
+            this.drought = -1;
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
-            
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
@@ -677,9 +684,9 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(trueRNG.checked){
+                if(gamemode == "trueRNG"){
                     if (this.drought > 0) {
-                         text(totalDrought, statPos.x + padding, statPos.y + padding + 2.75* txtSize + cellH);
+                         text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
                     }
                 
                 }
@@ -696,11 +703,7 @@ class Game {
             noStroke();
             fill(0);
             if (!this.fakeGame) {
-                if(trueRNG.checked){
-                     text("trueRNG", modePos.x, modePos.y + padding);
-                
-                } else {
-                     text("7 bag", modePos.x, modePos.y + padding);
+                text(gamemode, modePos.x, modePos.y + padding);
                 }
               
             }
