@@ -176,7 +176,7 @@ class Game {
                 }
 
                 if (incLevel) {
-                    if (fixLevel.checked){
+                    if (!fixLevel.checked){
                         this.level++;
                         this.setSpeed();
                     }
