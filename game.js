@@ -689,18 +689,18 @@ class Game {
         if (!this.practice) {
             
             const modePos = createVector(
-                statPos.x,
-                statPos.y + statDim.y + txtSize + cellH
+                scorePos.x,
+                nextPiecePos.y + nextPieceDim.y + cellH * 2 + txtSize * 3.75 + padding * 2
             );
             
             noStroke();
             fill(0);
             if (!this.fakeGame) {
                 if(trueRNG.checked){
-                     text("trueRNG", modPos.x, modPos.y + padding);
+                     text("trueRNG", modePos.x, modePos.y + padding);
                 
                 } else {
-                     text("7 bag", modPos.x, modPos.y + padding);
+                     text("7 bag", modePos.x, modePos.y + padding);
                 }
               
             }
