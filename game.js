@@ -24,8 +24,8 @@ class Game {
         
         this.drought = -1;
         
-        let gamemode = document.getElementById('gamemode').value;
-        let fixLevel = document.getElementById('fixlevel');
+        this.gamemode = document.getElementById('gamemode').value;
+        this.fixLevel = document.getElementById('fixlevel').checked;
         
         this.fakeGame = fakeGame;
         this.practice = practice;
@@ -178,7 +178,7 @@ class Game {
                 }
 
                 if (incLevel) {
-                    if (!fixLevel.checked){
+                    if (!this.fixLevel){
                         this.level++;
                         this.setSpeed();
                     }
@@ -320,7 +320,7 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                //switch (gamemode) {
+                //switch (this.gamemode) {
                   //  case "7bag":
                    //     this.bag.push(i);
                   //      break;
@@ -687,7 +687,7 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(gamemode == "trueRNG"){
+                if(this.gamemode == "trueRNG"){
                     if (this.drought > 0) {
                          text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
                     }
