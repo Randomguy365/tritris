@@ -22,7 +22,8 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
-        const trueRNG = document.getElementById('trueRNG');
+        let trueRNG = document.getElementById('trueRNG');
+        let fixLevel = document.getElementById('fixlevel');
         
         this.fakeGame = fakeGame;
         this.practice = practice;
