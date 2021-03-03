@@ -176,7 +176,7 @@ class Game {
                 }
 
                 if (incLevel) {
-                    if (!fixLevel){
+                    if (fixLevel.checked){
                         this.level++;
                         this.setSpeed();
                     }
@@ -318,7 +318,7 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                if (trueRNG) {
+                if (trueRNG.checked) {
                     this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
                 } else {
                     this.bag.push(i); //Refill the bag with each piece
