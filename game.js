@@ -320,22 +320,22 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                switch (gamemode) {
-                    case "7bag":
-                        this.bag.push(i);
-                        break;
-                    case "28bag":
-                        this.bag.push(i); // 28 pieces
-                        this.bag.push(i);
-                        this.bag.push(i);
-                        this.bag.push(i);
-                        break;    
-                    case "trueRNG":
-                        this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
-                    default:
+                //switch (gamemode) {
+                  //  case "7bag":
+                   //     this.bag.push(i);
+                  //      break;
+                    //case "28bag":
+                   //     this.bag.push(i); // 28 pieces
+                   //     this.bag.push(i);
+                   //     this.bag.push(i);
+                    //    this.bag.push(i);
+                    //    break;    
+                   // case "trueRNG":
+                   //     this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
+                   // default:
                         this.bag.push(i);
                 
-                }
+               // }
                
             }
         }
