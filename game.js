@@ -337,10 +337,12 @@ class Game {
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
-            this.drought++;
+            
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
+            } else {
+                this.drought++;
             }
             
         }
@@ -569,6 +571,7 @@ class Game {
                     scorePos.x + padding,
                     scorePos.y + padding + 3.5 * txtSize
                 );
+               
             }
         } else {
             //Practice mode text
@@ -646,7 +649,7 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            const totalDrought = nf(this.drought,2);
+            const totalDrought = `Drought nf(this.drought,2)`;
 
             const textW = max(
                 textWidth(tritrisPercentText),
@@ -674,12 +677,33 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(!trueRNG.checked){
+                if(trueRNG.checked){
                     if (this.drought > 0) {
                          text(totalDrought, statPos.x + padding, statPos.y + padding + 2.75* txtSize + cellH);
                     }
                 
                 }
+            }
+        }
+        
+        if (!this.practice) {
+            
+            const modePos = createVector(
+                statPos.x,
+                statPos.y + statDim.y + txtSize + cellH
+            );
+            
+            noStroke();
+            fill(0);
+            let mode = "7 bag";
+            if (!this.fakeGame) {
+                if(trueRNG.checked){
+                    mode = "trueRNG";
+                
+                } else {
+                    mode = "7 bag";
+                }
+                text(mode, modPos.x, modPos.y + padding)
             }
         }
 
