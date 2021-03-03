@@ -24,8 +24,8 @@ class Game {
         
         this.drought = -1;
         
-        let gamemode = document.getElementById('gamemode');
-        let fixLevel = document.getElementById('fixlevel');
+        //let gamemode = document.getElementById('gamemode');
+        //let fixLevel = document.getElementById('fixlevel');
         
         this.fakeGame = fakeGame;
         this.practice = practice;
@@ -178,10 +178,10 @@ class Game {
                 }
 
                 if (incLevel) {
-                    if (!fixLevel.checked){
+                    //if (!fixLevel.checked){
                         this.level++;
                         this.setSpeed();
-                    }
+                    //}
                     
                 }
                 this.score += this.scoreWeights[this.animatingLines.length] * (this.level + 1);
@@ -331,7 +331,7 @@ class Game {
         if (this.nextSingles > 0) {
             this.nextPieceIndex = 0; //This will make it spawn 3 single triangles in a row
             this.nextSingles--;
-            this.drought = -1;
+            //this.drought = -1;
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
@@ -339,8 +339,8 @@ class Game {
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
-            } else {
-                this.drought++;
+            //} else {
+                //this.drought++;
             }
             
         }
@@ -675,12 +675,12 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(gamemode.value == "trueRNG"){
-                    if (this.drought > 0) {
-                         text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
-                    }
+                //if(gamemode.value == "trueRNG"){
+                    //if (this.drought > 0) {
+                         //text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
+                    //}
                 
-                }
+               // }
             }
         }
         
@@ -694,7 +694,7 @@ class Game {
             noStroke();
             fill(0);
             if (!this.fakeGame) {
-                text(gamemode, modePos.x, modePos.y + padding);
+                //text(gamemode, modePos.x, modePos.y + padding);
                 }
               
             }
