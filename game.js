@@ -649,7 +649,7 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            const totalDrought = `Drought nf(this.drought,2)`;
+            const totalDrought = `Drought ${nf(this.drought,2)}`;
 
             const textW = max(
                 textWidth(tritrisPercentText),
@@ -695,15 +695,14 @@ class Game {
             
             noStroke();
             fill(0);
-            let mode = "7 bag";
             if (!this.fakeGame) {
                 if(trueRNG.checked){
-                    mode = "trueRNG";
+                     text("trueRNG", modPos.x, modPos.y + padding);
                 
                 } else {
-                    mode = "7 bag";
+                     text("7 bag", modPos.x, modPos.y + padding);
                 }
-                text(mode, modPos.x, modPos.y + padding)
+              
             }
         }
 
