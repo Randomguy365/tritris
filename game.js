@@ -22,7 +22,7 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
-        this.drought = 0;
+        this.drought = -1;
         
         this.fakeGame = fakeGame;
         this.practice = practice;
@@ -350,8 +350,8 @@ class Game {
                 this.nextSingles = 2;
             } 
         }
-        if (this.currentPiece == this.piecesJSON[0]) {
-             this.drought = 0; 
+        if (this.nextPieceIndex !== 0 || this.nextSingle == 2) {
+             this.drought = -1; 
         } else {
              this.drought++;
         }
