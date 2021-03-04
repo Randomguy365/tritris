@@ -25,7 +25,7 @@ class Game {
         this.drought = 0;
         
         //let gamemode = document.getElementById('gamemode');
-        let fixLevel = document.getElementById('fixlevel');
+        //let fixLevel = document.getElementById('fixlevel');
         
         this.fakeGame = fakeGame;
         this.practice = practice;
