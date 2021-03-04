@@ -22,7 +22,7 @@ class Game {
         this.score = 0;
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
-        this.drought = -1;
+        this.drought = 0;
         
         //let gamemode = document.getElementById('gamemode');
         let fixLevel = document.getElementById('fixlevel');
@@ -317,23 +317,40 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                this.bag.push(i); //Refill the bag with each piece
+                swtich (gamemode.value) {
+                    
+                    case "7bag":
+                    this.bag.push(i);
+                    break:
+                    
+                    case "28bag":
+                    this.bag.push(i);
+                    this.bag.push(i);
+                    this.bag.push(i);
+                    this.bag.push(i);
+                    break;
+                    
+                    case "trueRNG":
+                    this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
+                    break;
+                    
+                    default:
+                    this.bag.push(i);
+                    
+                }
             }
         }
         this.currentPiece = this.nextPiece; //Assign the new current piece
         if (this.nextSingles > 0) {
             this.nextPieceIndex = 0; //This will make it spawn 3 single triangles in a row
             this.nextSingles--;
-            this.drought = 0;
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
-            } else {
-                this.drought++;
-            }
+            } 
         }
 
         this.currentSnapshot.setNext(this.nextPieceIndex);
@@ -686,7 +703,7 @@ class Game {
             noStroke();
             fill(0);
             if (!this.fakeGame) {
-                text(gamemode, modePos.x, modePos.y + padding);
+                text(gamemode.value, modePos.x, modePos.y + padding);
               
               
             }
