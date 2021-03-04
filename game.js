@@ -210,11 +210,6 @@ class Game {
         if (this.currentPiece !== null) {
             //If either left is pressed or right is pressed and down isn't
             let oneKeyPressed = keyIsDown(controls.left) != keyIsDown(controls.right);
-            if (this.currentPiece == this.piecesJSON[0]) {
-                this.drought = 0; 
-            } else {
-                this.drought++;
-            }
             if (!this.practice && keyIsDown(controls.down)) {
                 oneKeyPressed = false; //Allows down and left/right to be pressed in practice, but not in a real game
             }
@@ -355,7 +350,11 @@ class Game {
                 this.nextSingles = 2;
             } 
         }
-
+        if (this.currentPiece == this.piecesJSON[0]) {
+             this.drought = 0; 
+        } else {
+             this.drought++;
+        }
         this.currentSnapshot.setNext(this.nextPieceIndex);
         this.nextPiece = new Piece(this.piecesJSON[this.nextPieceIndex]);
         this.playFallSound = true;
