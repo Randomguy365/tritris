@@ -25,7 +25,7 @@ class Game {
         this.drought = -1;
         
         //let gamemode = document.getElementById('gamemode');
-        //let fixLevel = document.getElementById('fixlevel');
+        let fixLevel = document.getElementById('fixlevel');
         
         this.fakeGame = fakeGame;
         this.practice = practice;
@@ -177,12 +177,9 @@ class Game {
                     if (newLineAmt > prevLineAmt) incLevel = true;
                 }
 
-                if (incLevel) {
-                    //if (!fixLevel.checked){
-                        this.level++;
-                        this.setSpeed();
-                    //}
-                    
+                if (incLevel && !fixLevel.checked) {
+                    this.level++;
+                    this.setSpeed();
                 }
                 this.score += this.scoreWeights[this.animatingLines.length] * (this.level + 1);
                 if (this.animatingLines.length == 3)
@@ -320,34 +317,26 @@ class Game {
     spawnPiece() {
        if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-            
-                 this.bag.push(i); //Refill the bag with each piece
-               
-           
-               
+                this.bag.push(i); //Refill the bag with each piece
             }
         }
         this.currentPiece = this.nextPiece; //Assign the new current piece
         if (this.nextSingles > 0) {
             this.nextPieceIndex = 0; //This will make it spawn 3 single triangles in a row
             this.nextSingles--;
-            //this.drought = -1;
         } else {
             const bagIndex = Math.floor(random() * this.bag.length);
             this.nextPieceIndex = this.bag.splice(bagIndex, 1)[0]; //Pick 1 item and remove it from bag
-            
             if (this.nextPieceIndex == 0) {
                 //If it randomly chose to spawn 1 triangle, spawn 2 more
                 this.nextSingles = 2;
-            //} else {
-                //this.drought++;
             }
-            
         }
 
         this.currentSnapshot.setNext(this.nextPieceIndex);
         this.nextPiece = new Piece(this.piecesJSON[this.nextPieceIndex]);
         this.playFallSound = true;
+        }
     }
 
     clearLines() {
@@ -675,12 +664,12 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                //if(gamemode.value == "trueRNG"){
+                if(gamemode.value == "trueRNG"){
                     //if (this.drought > 0) {
-                         //text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
+                         text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
                     //}
                 
-               // }
+               }
             }
         }
         
