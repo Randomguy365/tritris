@@ -317,7 +317,7 @@ class Game {
     spawnPiece() {
         if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
-                swtich (gamemode.value) {
+                switch (gamemode.value) {
                     
                     case "7bag":
                     this.bag.push(i);
