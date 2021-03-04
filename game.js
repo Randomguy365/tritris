@@ -664,12 +664,12 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(gamemode.value == "trueRNG"){
+                //if(gamemode.value == "trueRNG"){
                     //if (this.drought > 0) {
                          text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
                     //}
                 
-               }
+              // }
             }
         }
         
@@ -684,7 +684,7 @@ class Game {
             fill(0);
             if (!this.fakeGame) {
                 //text(gamemode, modePos.x, modePos.y + padding);
-                }
+              
               
             }
         }
