@@ -351,9 +351,9 @@ class Game {
             } 
         }
         if (this.nextPieceIndex !== 0 || this.nextSingle == 2) {
-             this.drought = -1; 
+             this.drought++; 
         } else {
-             this.drought++;
+             this.drought = -1;
         }
         this.currentSnapshot.setNext(this.nextPieceIndex);
         this.nextPiece = new Piece(this.piecesJSON[this.nextPieceIndex]);
