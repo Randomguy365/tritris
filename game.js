@@ -205,9 +205,9 @@ class Game {
                 this.alive = false; //If the new piece is already blocked, game over
             }
             if (this.nextPieceIndex == 0) {
-                drought = 0; 
+                this.drought = 0; 
             } else {
-                drought++;
+                this.drought++;
             }
         }
 
