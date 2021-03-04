@@ -336,7 +336,7 @@ class Game {
         this.currentSnapshot.setNext(this.nextPieceIndex);
         this.nextPiece = new Piece(this.piecesJSON[this.nextPieceIndex]);
         this.playFallSound = true;
-        }
+        
     }
 
     clearLines() {
