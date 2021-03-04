@@ -315,7 +315,7 @@ class Game {
     }
 
     spawnPiece() {
-       if (this.bag.length == []) {
+        if (this.bag.length == []) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
                 this.bag.push(i); //Refill the bag with each piece
             }
@@ -336,10 +336,10 @@ class Game {
         this.currentSnapshot.setNext(this.nextPieceIndex);
         this.nextPiece = new Piece(this.piecesJSON[this.nextPieceIndex]);
         this.playFallSound = true;
-        
     }
 
-    clearLines() {
+
+   clearLines() {
         let linesCleared = this.grid.clearLines();
         if (linesCleared.length > 0) {
             this.currentSnapshot.setLines(linesCleared);
