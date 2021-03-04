@@ -636,7 +636,7 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            //const totalDrought = `Drought ${nf(this.drought,2)}`;
+            const totalDrought = `Drought ${nf(this.drought,2)}`;
 
             const textW = max(
                 textWidth(tritrisPercentText),
@@ -664,12 +664,12 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                //if(gamemode.value == "trueRNG"){
-                    //if (this.drought > 0) {
+                if(gamemode.value == "trueRNG"){
+                    if (this.drought > -5) {
                          text(totalDrought, statPos.x, statPos.y + 1.75* txtSize + cellH);
-                    //}
+                    }
                 
-              // }
+               }
             }
         }
         
