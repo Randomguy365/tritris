@@ -24,7 +24,7 @@ class Game {
         
         this.drought = 0;
         
-        let gamemode = document.getElementById('gamemode');
+        //let gamemode = document.getElementById('gamemode');
         let fixLevel = document.getElementById('fixlevel');
         
         this.fakeGame = fakeGame;
@@ -321,7 +321,7 @@ class Game {
                     
                     case "7bag":
                     this.bag.push(i);
-                    break:
+                    break;
                     
                     case "28bag":
                     this.bag.push(i);
