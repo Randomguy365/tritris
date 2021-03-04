@@ -350,7 +350,7 @@ class Game {
                 this.nextSingles = 2;
             } 
         }
-        if (this.nextPieceIndex !== 0 || this.nextSingle == 2) {
+        if (this.nextPieceIndex !== 0 || this.nextSingles == 2) {
              this.drought++; 
         } else {
              this.drought = -1;
