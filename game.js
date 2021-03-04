@@ -24,9 +24,6 @@ class Game {
         
         this.drought = 0;
         
-        //let gamemode = document.getElementById('gamemode');
-        //let fixLevel = document.getElementById('fixlevel');
-        
         this.fakeGame = fakeGame;
         this.practice = practice;
         if (this.practice) {
@@ -206,6 +203,11 @@ class Game {
             if (!this.isValid(this.currentPiece)) {
                 this.updateHistory();
                 this.alive = false; //If the new piece is already blocked, game over
+            }
+            if (this.nextPieceIndex == 0) {
+                drought = 0; 
+            } else {
+                drought++;
             }
         }
 
