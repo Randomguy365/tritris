@@ -338,9 +338,7 @@ class Game {
                     break;
                     
                     case "Weighted RNG":
-                    let r = Math.floor(random() * 98);
-                    let j = 0;
-                    this.weightedNextPiece(r, j);
+                    this.weightedNextPiece();
                     console.log(this.pieceProbability);
                     break;
                     
@@ -485,23 +483,23 @@ class Game {
         return this.grid.isValid(piece);
     }
     
-    weightedNextPiece(random, index) {
-        let r = random;
+    weightedNextPiece() {
+        let r = Math.floor(random() * 98);
         for (let i = 0; i < this.piecesJSON.length; i++) {
             if (r <= this.pieceProbability[i]) {
-                r -= this.pieceProbability[index];
+                r -= this.pieceProbability[i];
             } else {
                 this.bag.push(i);
-                if (index == 0 && this.pieceProbability[0] >= 12) {
+                if (i == 0 && this.pieceProbability[0] >= 12) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
                     this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
-                } else if (this.pieceProbability[index] >= 5) {
+                } else if (this.pieceProbability[i] >= 5) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
-                    this.pieceProbability[index] -= this.intensity * this.piecesJSON.length;    
+                    this.pieceProbability[i] -= this.intensity * this.piecesJSON.length;    
                 }
                 break;
             }  
