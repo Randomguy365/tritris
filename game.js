@@ -484,35 +484,31 @@ class Game {
         return this.grid.isValid(piece);
     }
     
-    function pieceWeightRebalance(index, intensity) {
-        if (index == 0 && this.pieceProbability[0] >= 12) {
-            for (let i = 0; i < this.piecesJSON.length; i++) {
-                this.pieceProbability[i] += intensity;
-            }
-            this.pieceProbability[0] -= intensity * this.piecesJSON.length;
-        } else if (this.pieceProbability[index] > 5) {
-            for (let i = 0; i < this.piecesJSON.length; i++) {
-                this.pieceProbability[i] += intensity;
-            }
-            this.pieceProbability[index] -= intensity * this.pieceJSON.length;    
-        }
-        
-    }
     function weightedNextPiece(random, index) {
         let r = random;
         let i = index;
         if (r < this.pieceProbability[index]) {
             r -= this.pieceProbability[index];
             i++;
-            try {
+            //try {
                 this.weightedNextPiece(r,i);
-            } catch (err) {
-                console.log("idk how it happened but we've gone overboard");
-                this.bag.push(0);
-            }
+            //} catch (err) {
+                //console.log("idk how it happened but we've gone overboard");
+                //this.bag.push(0);
+            //}
         } else {
             this.bag.push(i);
-            this.pieceWeightRebalance(i, 0.2);
+            if (index == 0 && this.pieceProbability[0] >= 12) {
+                for (let i = 0; i < this.piecesJSON.length; i++) {
+                    this.pieceProbability[i] += intensity;
+                }
+                this.pieceProbability[0] -= intensity * this.piecesJSON.length;
+            } else if (this.pieceProbability[index] >= 5) {
+                for (let i = 0; i < this.piecesJSON.length; i++) {
+                    this.pieceProbability[i] += intensity;
+                }
+                this.pieceProbability[index] -= intensity * this.pieceJSON.length;    
+            }
         }
     }
     playSounds(clearSound, fallSound, moveSound, tritrisSound) {
