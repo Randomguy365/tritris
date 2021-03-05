@@ -726,13 +726,13 @@ class Game {
                     stroke(100,0,0);
                     text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
                     console.log(totalDrought);
-                }
-                
                }
+                
+               
             }
         }
         
-        if (!this.practice) {
+        if (this.practice) {
             
             const modePos = createVector(
                 scorePos.x,
