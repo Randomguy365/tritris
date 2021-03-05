@@ -503,7 +503,7 @@ class Game {
                     this.pieceProbability[i] -= this.intensity * this.piecesJSON.length;    
                 }
                 for (let j = 0; j < this.pieceProbability.length; j++) {
-                    this.pieceProbability[j] = math.round(this.pieceProbability[j]*10)/10;
+                    this.pieceProbability[j] = Math.round(this.pieceProbability[j]*10)/10;
                 
                 }
                 break;
@@ -695,7 +695,7 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            const totalDrought = `D ${nf(this.drought,2)}`;
+            const totalDrought = `${nf(this.drought,2)}`;
 
             const textW = max(
                 textWidth(tritrisPercentText),
