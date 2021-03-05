@@ -695,7 +695,7 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            const totalDrought = `${nf(this.drought,2)}`;
+            const totalDrought = `D ${nf(this.drought,2)}`;
 
             const textW = max(
                 textWidth(tritrisPercentText),
@@ -723,7 +723,7 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(gamemode.value == "true RNG"){
+                if(gamemode.value == "True RNG"){
                     if (this.drought > 14) {
                         text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
                         console.log(totalDrought);
