@@ -493,14 +493,18 @@ class Game {
                 this.bag.push(i);
                 if (i == 0 && this.pieceProbability[0] >= 12) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
-                        Math.floor(this.pieceProbability[i]*10)/10 += this.intensity;
+                        this.pieceProbability[i] += this.intensity;
                     }
-                    Math.floor(this.pieceProbability[0]*10)/10 -= this.intensity * this.piecesJSON.length;
+                    this.pieceProbability[0]*10 -= this.intensity * this.piecesJSON.length;
                 } else if (this.pieceProbability[i] >= 5) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
-                        Math.floor(this.pieceProbability[i]*10)/10 += this.intensity;
+                        this.pieceProbability[i] += this.intensity;
                     }
-                    Math.floor(this.pieceProbability[i]*10)/10 -= this.intensity * this.piecesJSON.length;    
+                    this.pieceProbability[i] -= this.intensity * this.piecesJSON.length;    
+                }
+                for (let j = 0; j < this.pieceProbability.length; j++) {
+                    this.pieceProbability[j] = Math.floor(this.pieceProbability[j]*10)/10;
+                
                 }
                 break;
             }  
