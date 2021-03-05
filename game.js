@@ -24,6 +24,7 @@ class Game {
         
         this.drought = -1;
         this.pieceProbability = [14,14,14,14,14,14,14];
+        this.intensity = 0.2;
         
         this.fakeGame = fakeGame;
         this.practice = practice;
@@ -500,14 +501,14 @@ class Game {
             this.bag.push(i);
             if (index == 0 && this.pieceProbability[0] >= 12) {
                 for (let i = 0; i < this.piecesJSON.length; i++) {
-                    this.pieceProbability[i] += intensity;
+                    this.pieceProbability[i] += this.intensity;
                 }
-                this.pieceProbability[0] -= intensity * this.piecesJSON.length;
+                this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
             } else if (this.pieceProbability[index] >= 5) {
                 for (let i = 0; i < this.piecesJSON.length; i++) {
-                    this.pieceProbability[i] += intensity;
+                    this.pieceProbability[i] += this.intensity;
                 }
-                this.pieceProbability[index] -= intensity * this.pieceJSON.length;    
+                this.pieceProbability[index] -= this.intensity * this.pieceJSON.length;    
             }
         }
     }
