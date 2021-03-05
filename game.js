@@ -505,7 +505,7 @@ class Game {
             r -= this.pieceProbability[index];
             i++;
             try {
-                weightedNextPiece(r,i);
+                this.weightedNextPiece(r,i);
             } catch (err) {
                 console.log("idk how it happened but we've gone overboard");
                 this.bag.push(0);
