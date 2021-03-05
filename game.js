@@ -339,7 +339,8 @@ class Game {
                     case "Weighted RNG":
                     let r = Math.floor(random() * 98);
                     let j = 0;
-                    weightedNextPiece(r, j);
+                    this.weightedNextPiece(r, j);
+                    console.log(pieceProbability);
                     break;
                     
                     default:
@@ -729,7 +730,8 @@ class Game {
                 ); 
                 if(gamemode.value == "true RNG"){
                     if (this.drought > 14) {
-                         text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
+                        text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
+                        console.log(totalDrought);
                     }
                 
                }
