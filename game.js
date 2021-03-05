@@ -340,7 +340,7 @@ class Game {
                     let r = Math.floor(random() * 98);
                     let j = 0;
                     this.weightedNextPiece(r, j);
-                    console.log(pieceProbability);
+                    console.log(this.pieceProbability);
                     break;
                     
                     default:
