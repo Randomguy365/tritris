@@ -495,7 +495,7 @@ class Game {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
-                    this.pieceProbability[0]*10 -= this.intensity * this.piecesJSON.length;
+                    this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
                 } else if (this.pieceProbability[i] >= 5) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
