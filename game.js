@@ -508,7 +508,7 @@ class Game {
                 for (let i = 0; i < this.piecesJSON.length; i++) {
                     this.pieceProbability[i] += this.intensity;
                 }
-                this.pieceProbability[index] -= this.intensity * this.pieceJSON.length;    
+                this.pieceProbability[index] -= this.intensity * this.piecesJSON.length;    
             }
         }
     }
