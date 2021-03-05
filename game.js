@@ -495,12 +495,12 @@ class Game {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
-                    this.pieceProbability[0] -= this.intensity * Math.floor(this.piecesJSON.length);
+                    this.pieceProbability[0] -= this.intensity * 7;
                 } else if (this.pieceProbability[i] >= 5) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
-                    this.pieceProbability[i] -= this.intensity * Math.floor(this.piecesJSON.length);    
+                    this.pieceProbability[i] -= this.intensity * 7;    
                 }
                 //for (let j = 0; j < this.pieceProbability.length; j++) {
                     //this.pieceProbability[j] = Math.floor(this.pieceProbability[j]*10)/10;
