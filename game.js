@@ -495,17 +495,17 @@ class Game {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
-                    this.pieceProbability[0] -= this.intensity * 7;
+                    this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
                 } else if (this.pieceProbability[i] >= 5) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
                         this.pieceProbability[i] += this.intensity;
                     }
-                    this.pieceProbability[i] -= this.intensity * 7;    
+                    this.pieceProbability[i] -= this.intensity * this.piecesJSON.length;    
                 }
-                //for (let j = 0; j < this.pieceProbability.length; j++) {
-                    //this.pieceProbability[j] = Math.floor(this.pieceProbability[j]*10)/10;
+                for (let j = 0; j < this.pieceProbability.length; j++) {
+                    this.pieceProbability[j] = this.pieceProbability[j].toFixed(1);
                 
-                //}
+                }
                 break;
             }  
         }
