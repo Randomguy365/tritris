@@ -510,7 +510,7 @@ class Game {
                 }
                 this.pieceProbability[index] -= this.intensity * this.piecesJSON.length;    
             }
-            break;
+            return;
         }
         try {
             this.weightedNextPiece(r,i);
