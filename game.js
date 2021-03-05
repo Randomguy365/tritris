@@ -333,14 +333,12 @@ class Game {
                     }
                     break;
                     
-                    case "True RNG":
+                    case "True Random":
                     this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
                     break;
                     
                     case "Weighted RNG":
                     this.weightedNextPiece();
-                    console.log(this.pieceProbability[0] + this.pieceProbability[1] + this.pieceProbability[2] + this.pieceProbability[3] + this.pieceProbability[4] + this.pieceProbability[5] + this.pieceProbability[6] );
-                    console.log(this.pieceProbability);
                     break;
                     
                     default:
@@ -723,11 +721,12 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(gamemode.value == "True RNG"){
-                    if (this.drought > 14) {
-                        text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
-                        console.log(totalDrought);
-                    }
+               
+                if (this.drought > 14) {
+                    stroke(100,0,0);
+                    text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
+                    console.log(totalDrought);
+                }
                 
                }
             }
