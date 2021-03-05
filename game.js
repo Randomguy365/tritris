@@ -723,7 +723,8 @@ class Game {
                 ); 
                
                 if (this.drought > 14) {
-                    stroke(100,0,0);
+                    fill(100,0,0);
+                    noStroke();
                     text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
                     console.log(totalDrought);
                }
