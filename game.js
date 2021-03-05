@@ -512,7 +512,7 @@ class Game {
             }
         } else {
             this.bag.push(i);
-            pieceWeightRebalance(i, 0.2);
+            this.pieceWeightRebalance(i, 0.2);
         }
     }
     playSounds(clearSound, fallSound, moveSound, tritrisSound) {
