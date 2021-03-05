@@ -488,15 +488,15 @@ class Game {
     weightedNextPiece(random, index) {
         let r = random;
         let i = index;
-        if (r < this.pieceProbability[index]) {
+        if (r <= this.pieceProbability[index]) {
             r -= this.pieceProbability[index];
             i++;
-            //try {
+            try {
                 this.weightedNextPiece(r,i);
-            //} catch (err) {
-                //console.log("idk how it happened but we've gone overboard");
-                //this.bag.push(0);
-            //}
+            } catch (err) {
+                console.log("idk how it happened but we've gone overboard");
+                this.bag.push(0);
+            }
         } else {
             this.bag.push(i);
             if (index == 0 && this.pieceProbability[0] >= 12) {
@@ -510,6 +510,13 @@ class Game {
                 }
                 this.pieceProbability[index] -= this.intensity * this.piecesJSON.length;    
             }
+            break;
+        }
+        try {
+            this.weightedNextPiece(r,i);
+        } catch (err) {
+            console.log("idk how it happened but we've gone overboard");
+            this.bag.push(0);
         }
     }
     playSounds(clearSound, fallSound, moveSound, tritrisSound) {
