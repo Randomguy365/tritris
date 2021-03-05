@@ -484,7 +484,7 @@ class Game {
         return this.grid.isValid(piece);
     }
     
-    pieceWeightRebalance(index, intensity) {
+    function pieceWeightRebalance(index, intensity) {
         if (index == 0 && this.pieceProbability[0] >= 12) {
             for (let i = 0; i < this.piecesJSON.length; i++) {
                 this.pieceProbability[i] += intensity;
@@ -498,7 +498,7 @@ class Game {
         }
         
     }
-    weightedNextPiece(random, index) {
+    function weightedNextPiece(random, index) {
         let r = random;
         let i = index;
         if (r < this.pieceProbability[index]) {
