@@ -503,7 +503,7 @@ class Game {
                     this.pieceProbability[i] -= this.intensity * this.piecesJSON.length;    
                 }
                 for (let j = 0; j < this.pieceProbability.length; j++) {
-                    this.pieceProbability[j] = (this.pieceProbability[j]*1).toFixed(1);
+                    this.pieceProbability[j] = parseFloat(this.pieceProbability[j]).toFixed(1);
                 
                 }
                 break;
