@@ -484,7 +484,7 @@ class Game {
         return this.grid.isValid(piece);
     }
     
-    function weightedNextPiece(random, index) {
+    weightedNextPiece(random, index) {
         let r = random;
         let i = index;
         if (r < this.pieceProbability[index]) {
