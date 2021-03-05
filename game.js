@@ -486,7 +486,7 @@ class Game {
     weightedNextPiece() {
         let r = Math.floor(random() * 98);
         for (let i = 0; i < this.piecesJSON.length; i++) {
-            if (r <= this.pieceProbability[i]) {
+            if (r >= this.pieceProbability[i]) {
                 r -= this.pieceProbability[i];
             } else {
                 this.bag.push(i);
