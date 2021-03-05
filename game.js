@@ -499,8 +499,8 @@ class Game {
         
     }
     weightedNextPiece(random, index) {
-        const r = random;
-        const i = index;
+        let r = random;
+        let i = index;
         if (r < this.pieceProbability[index]) {
             r -= this.pieceProbability[index];
             i++;
