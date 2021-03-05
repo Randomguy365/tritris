@@ -23,6 +23,7 @@ class Game {
         this.scoreWeights = { 1: 100, 2: 400, 3: 1200 };
         
         this.drought = -1;
+        this.pieceProbability = [14,14,14,14,14,14,14];
         
         this.fakeGame = fakeGame;
         this.practice = practice;
@@ -314,29 +315,38 @@ class Game {
 
     spawnPiece() {
         if (this.bag.length == []) {
-            for (let i = 0; i < this.piecesJSON.length; i++) {
-                switch (gamemode.value) {
+            switch (gamemode.value) {
                     
-                    case "7bag":
-                    this.bag.push(i);
+                    case "7 bag":
+                    for (let i = 0; i < this.piecesJSON.length; i++) {
+                        this.bag.push(i);
+                    }
                     break;
                     
-                    case "28bag":
-                    this.bag.push(i);
-                    this.bag.push(i);
-                    this.bag.push(i);
-                    this.bag.push(i);
+                    case "28 bag":
+                    for (let i = 0; i < this.piecesJSON.length; i++) {
+                        this.bag.push(i); // 4 times for 28 bag
+                        this.bag.push(i);
+                        this.bag.push(i);
+                        this.bag.push(i);
+                    }
                     break;
                     
-                    case "trueRNG":
+                    case "True RNG":
                     this.bag.push(Math.floor(random() * this.piecesJSON.length)); //Random pieces
+                    break;
+                    
+                    case "Weighted RNG":
+                    let r = Math.floor(random() * 98);
+                    let j = 0;
+                    weightedNextPiece(r, j);
                     break;
                     
                     default:
                     this.bag.push(i);
                     
                 }
-            }
+            
         }
         this.currentPiece = this.nextPiece; //Assign the new current piece
         if (this.nextSingles > 0) {
@@ -472,7 +482,38 @@ class Game {
         if (piece.outOfBounds(this.w, this.h)) return false;
         return this.grid.isValid(piece);
     }
-
+    
+    pieceWeightRebalance(index, intensity) {
+        if (index == 0 && this.pieceProbability[0] >= 12) {
+            for (let i = 0; i < this.piecesJSON.length; i++) {
+                this.pieceProbability[i] += intensity;
+            }
+            this.pieceProbability[0] -= intensity * this.piecesJSON.length;
+        } else if (this.pieceProbability[index] > 5) {
+            for (let i = 0; i < this.piecesJSON.length; i++) {
+                this.pieceProbability[i] += intensity;
+            }
+            this.pieceProbability[index] -= intensity * this.pieceJSON.length;    
+        }
+        
+    }
+    weightedNextPiece(random, index) {
+        const r = random;
+        const i = index;
+        if (r < this.pieceProbability[index]) {
+            r -= this.pieceProbability[index];
+            i++;
+            try {
+                weightedNextPiece(r,i);
+            } catch (err) {
+                console.log("idk how it happened but we've gone overboard");
+                this.bag.push(0);
+            }
+        } else {
+            this.bag.push(i);
+            pieceWeightRebalance(i, 0.2);
+        }
+    }
     playSounds(clearSound, fallSound, moveSound, tritrisSound) {
         if (this.playClearSound) {
             clearSound.play();
@@ -658,7 +699,7 @@ class Game {
             const totalSec = Math.round(this.totalTime / 1000) % 60;
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
-            const totalDrought = `Drought ${nf(this.drought,2)}`;
+            const totalDrought = `D ${nf(this.drought,2)}`;
 
             const textW = max(
                 textWidth(tritrisPercentText),
@@ -686,8 +727,8 @@ class Game {
                     statPos.x + padding,
                     statPos.y + padding + 1.75 * txtSize
                 ); 
-                if(gamemode.value == "trueRNG"){
-                    if (this.drought > -5) {
+                if(gamemode.value == "true RNG"){
+                    if (this.drought > 14) {
                          text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
                     }
                 
