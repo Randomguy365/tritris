@@ -339,7 +339,7 @@ class Game {
                     
                     case "Weighted RNG":
                     this.weightedNextPiece();
-                    console.log(this.pieceProbability);
+                    console.log(this.pieceProbability[0] + this.pieceProbability[1] + this.pieceProbability[2] + this.pieceProbability[3] + this.pieceProbability[4] + this.pieceProbability[5] + this.pieceProbability[6] );
                     break;
                     
                     default:
