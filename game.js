@@ -340,6 +340,7 @@ class Game {
                     case "Weighted RNG":
                     this.weightedNextPiece();
                     console.log(this.pieceProbability[0] + this.pieceProbability[1] + this.pieceProbability[2] + this.pieceProbability[3] + this.pieceProbability[4] + this.pieceProbability[5] + this.pieceProbability[6] );
+                    console.log(this.pieceProbability);
                     break;
                     
                     default:
@@ -492,14 +493,14 @@ class Game {
                 this.bag.push(i);
                 if (i == 0 && this.pieceProbability[0] >= 12) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
-                        this.pieceProbability[i] += this.intensity;
+                        Math.floor(this.pieceProbability[i]*10)/10 += this.intensity;
                     }
-                    this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
+                    Math.floor(this.pieceProbability[0]*10)/10 -= this.intensity * this.piecesJSON.length;
                 } else if (this.pieceProbability[i] >= 5) {
                     for (let i = 0; i < this.piecesJSON.length; i++) {
-                        this.pieceProbability[i] += this.intensity;
+                        Math.floor(this.pieceProbability[i]*10)/10 += this.intensity;
                     }
-                    this.pieceProbability[i] -= this.intensity * this.piecesJSON.length;    
+                    Math.floor(this.pieceProbability[i]*10)/10 -= this.intensity * this.piecesJSON.length;    
                 }
                 break;
             }  
