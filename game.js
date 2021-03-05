@@ -487,36 +487,24 @@ class Game {
     
     weightedNextPiece(random, index) {
         let r = random;
-        let i = index;
-        if (r <= this.pieceProbability[index]) {
-            r -= this.pieceProbability[index];
-            i++;
-            try {
-                this.weightedNextPiece(r,i);
-            } catch (err) {
-                console.log("idk how it happened but we've gone overboard");
-                this.bag.push(0);
-            }
-        } else {
-            this.bag.push(i);
-            if (index == 0 && this.pieceProbability[0] >= 12) {
-                for (let i = 0; i < this.piecesJSON.length; i++) {
-                    this.pieceProbability[i] += this.intensity;
+        for (let i = 0; i < this.piecesJSON.length; i++) {
+            if (r <= this.pieceProbability[i]) {
+                r -= this.pieceProbability[index];
+            } else {
+                this.bag.push(i);
+                if (index == 0 && this.pieceProbability[0] >= 12) {
+                    for (let i = 0; i < this.piecesJSON.length; i++) {
+                        this.pieceProbability[i] += this.intensity;
+                    }
+                    this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
+                } else if (this.pieceProbability[index] >= 5) {
+                    for (let i = 0; i < this.piecesJSON.length; i++) {
+                        this.pieceProbability[i] += this.intensity;
+                    }
+                    this.pieceProbability[index] -= this.intensity * this.piecesJSON.length;    
                 }
-                this.pieceProbability[0] -= this.intensity * this.piecesJSON.length;
-            } else if (this.pieceProbability[index] >= 5) {
-                for (let i = 0; i < this.piecesJSON.length; i++) {
-                    this.pieceProbability[i] += this.intensity;
-                }
-                this.pieceProbability[index] -= this.intensity * this.piecesJSON.length;    
-            }
-            return;
-        }
-        try {
-            this.weightedNextPiece(r,i);
-        } catch (err) {
-            console.log("idk how it happened but we've gone overboard");
-            this.bag.push(0);
+                break;
+            }  
         }
     }
     playSounds(clearSound, fallSound, moveSound, tritrisSound) {
