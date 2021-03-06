@@ -694,6 +694,7 @@ class Game {
             const totalM = Math.floor(this.totalTime / (1000*60));
             const startLevelText = `Time ${nf(totalM,2)}:${nf(totalSec,2)}`;
             const totalDrought = `D ${nf(this.drought,2)}`;
+			const gamemodeTitle = gamemode.value;
 
             const textW = max(
                 textWidth(tritrisPercentText),
@@ -727,27 +728,22 @@ class Game {
                     noStroke();
                     text(totalDrought, statPos.x, statPos.y + 2.75* txtSize + cellH);
                     console.log(totalDrought);
-               }
-                
-               
+               } 
             }
         }
         
-        if (this.practice) {
+        
             
-            const modePos = createVector(
-                scorePos.x,
-                nextPiecePos.y + nextPieceDim.y + cellH * 2 + txtSize * 3.75 + padding * 2
-            );
-            
-            noStroke();
-            fill(0);
-            if (!this.fakeGame) {
-                text(gamemode.value, modePos.x, modePos.y + padding);
-              
-              
-            }
+        const modePos = createVector(
+            scorePos.x,
+            nextPiecePos.y + nextPieceDim.y + cellH * 2 + txtSize * 3.75 + padding * 2
+        );
+        if (!this.fakeGame) {
+			noStroke();
+			fill(0);
+			text(gamemode.value, modePos.x, modePos.y + padding);
         }
+        
 
         if (this.practice) {
             stroke(255,0,0);
